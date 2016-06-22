@@ -1,0 +1,3 @@
+module.exports = {
+  "tits": "tots"
+};
