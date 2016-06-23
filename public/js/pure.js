@@ -34,7 +34,7 @@ function ajaxWord(word, i){
           $(`.${word}`).append(`<h2>${word}</h2>`);
         }
         else if (pos === "noun" || pos === "verb"){
-          ajaxBay(word, i);
+          ajaxPic(word, i);
         } else {
           $(`.${word}`).addClass('text');
           $(`.${word}`).append(`<h2>${word}</h2>`);
@@ -60,7 +60,9 @@ function ajaxBay(insert, i){
     }
   })
 }
+
 function ajaxBay2(insert, i){
+  $('#pos_catch').empty();
   $('#pos_catch').append(`<div class="${insert}"></div>`)
   $.getJSON({
     method: "GET",
@@ -138,8 +140,18 @@ function translate(text, lan){
     method: "POST",
     url: `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${key}&text=${text}&lang=${lang}&[format=plain]]`,
     success: function(result){
-      console.log(result);
       alert(result.text[0]);
+    }
+  })
+}
+function translate2(text, lan1, lan2){
+  var key = "trnsl.1.1.20160622T163325Z.6c9491f7b8d1b87e.69a2ab2510d377b52582d29fd03982abfb329393";
+  var lang = `${lan1}-${lan2}`;
+  $.ajax({
+    method: "POST",
+    url: `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${key}&text=${text}&lang=${lang}&[format=plain]]`,
+    success: function(result){
+      $(".catches").append(`<h2>${result.text[0]}</h2>`);
     }
   })
 }
@@ -151,10 +163,11 @@ function def(word){
     success: function(result){
       var json = xmlToJson(result);
       def = json.entry_list.entry[0].def.dt[0]["#text"];
+
       if(typeof def === "object"){
-        alert(def[0] + " (remember you only get one hint)");
+        alert(def[0].replace(/:/g, "") + " (remember you only get one hint)");
       } else {
-        alert(def + " (remember you only get one hint)");
+        alert(def.replace(/:/g, "") + " (remember you only get one hint)");
       }
     }
   })
@@ -163,4 +176,59 @@ function def(word){
 function reveal(word){
   $("#pos_catch").empty();
   $("#pos_catch").append(`<h2>${word}</h2>`)
+}
+
+function pos(word){
+  $.ajax({
+    method: "GET",
+    url: `http://words.bighugelabs.com/api/2/715e1dffe493327e1bae1ff50d401033/${word}/json`,
+    success: function(result){
+      var res = result.split(":")[0].replace(/{/g, "");
+      var pos1 = res.replace(/['"]+/g, '');
+      var ans = $('#ward').val().toLowerCase();
+      var pos = $('#pos1').val().toLowerCase();
+
+      if(ans !== word){
+        $('.wrong1').remove();
+        $("#wer").append(`<span class="wrong1">sorry incorrect word</span>`)
+      } else if (pos !== pos1){
+        $('.wrong2').remove();
+        $("#war").append(`<span class="wrong2">sorry incorrect part of speech</span>`)
+      } else if(ans === word && pos !== pos1) {
+        $('.wrong1').remove();
+      } else if(pos === pos1 && ans !== word){
+        $('.wrong2').remove();
+      } else {
+        alert("Congratulations!")
+        $('.wrong1').remove();
+        $('.wrong2').remove();
+        $('#ward').val('');
+        $("#pos1").val('');
+      }
+    }
+  })
+}
+
+function ajaxWord69(word){
+  $.ajax({
+    method: "GET",
+    url: `http://www.dictionaryapi.com/api/v1/references/collegiate/xml/${word}?key=71b822f1-e0af-4112-affc-f192553b9e76`,
+    success: function(result){
+      var json = xmlToJson(result);
+      var pos = json.entry_list.entry[0].fl["#text"];
+        $(".cat").append(`<h5>Part of Speech: ${pos}</h5>`)
+      }
+  })
+}
+
+function ajaxBay69(word){
+  $.getJSON({
+    method: "GET",
+    dataType: 'jsonp',
+    url: `https://pixabay.com/api/?key=2698784-511c7f267c2eae102b4399f86&q=${word}&image_type=photo`,
+    success: function(result){
+      var arr = result.hits;
+        console.log(arr);
+    }
+  })
 }
