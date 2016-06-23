@@ -3,6 +3,11 @@
 }
 body {
   overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+#name {
+  color: black;
 }
 
 header {
@@ -31,8 +36,12 @@ h1 {
 h2 {
   font-size: 40px;
   color: white;
-
 }
+h4 {
+  font-weight: 200;
+  font-size: 20px;
+}
+
 h6 {
   color: grey;
 }
@@ -43,10 +52,12 @@ p {
 
 h5{
   color: #863A35;
+  display: inline-block;
 }
 
 #word{
   color: black;
+  border-radius: 5px;
 }
 #doit {
   border-radius: 5px;
@@ -99,6 +110,8 @@ footer {
   clear: both;
   float: left;
   background: #336468;
+  white-space: nowrap;
+  overflow: hidden;
   display: inline-block;
   text-align: center;
   border: 1px solid lightblue;
@@ -111,7 +124,11 @@ h6 a {
 h6 a:hover {
   color: lightblue;
   font-size: 18px;
+  font-weight: 100;
   text-decoration: none;
+}
+table {
+  color: black;
 }
 
 .toggle1 {
@@ -119,6 +136,7 @@ h6 a:hover {
   height: 40px;
   float: right;
   color: lightblue;
+  white-space: nowrap;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,7 +154,6 @@ h6 a:hover {
 }
 .catch img {
   height: 150px;
-  display: block;
   margin-bottom: 5px;
 }
 
@@ -145,7 +162,7 @@ h6 a:hover {
   padding-top: 50px;
   display: flex;
   justify-content: center;
-  align-content: center;
+  align-items: center;
 }
 .result {
   height: 50%;
@@ -159,7 +176,7 @@ h6 a:hover {
   padding-top: 60px;
 }
 
-#answer {
+.answer {
   width: 70%;
   background: rgba(255, 255, 255, 0.5);
   border: 1px solid grey;
@@ -177,7 +194,7 @@ h6 a:hover {
   margin-left: 10px;
 }
 
-#answer::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+.answer::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: grey;
   font-size: 18px;
 }
@@ -200,21 +217,27 @@ h6 a:hover {
   width: 30%;
   background: #863A35;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 200;
+  color: white;
+}
+
+#sub2 {
+  width: 30%;
+  background: #863A35;
+  font-size: 18px;
+  font-weight: 200;
   color: white;
 }
 
 .stuff {
   border-radius: 10px;
-  border: white solid 1px;
 }
 label {
   color: #863A35;
   font-size: 24px;
-
 }
 
-#item1 {
+.item1 {
   flex: 1;
   background: #457d81;
   text-align: center;
@@ -231,9 +254,14 @@ label {
 .btn {
   background: #aa7571;
 }
+.btn1 {
+  display: block;
+  margin-left: 35%;
+}
 
 a {
   color: #863A35;
+
 }
 a:hover {
   color: #aa7571;
@@ -254,6 +282,60 @@ a:hover {
   white-space: nowrap;
 }
 
+#ward {
+  width: 20%;
+}
+#pos1 {
+  width: 20%;
+}
+
+#res3 {
+
+}
+#z {
+  margin-top: -10px;
+}
+
+.pos2 {
+  margin-bottom: 0px;
+  margin-top: -30px;
+}
+
+#stuff {
+  color: black;
+}
+
+.fa {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+#smal {
+  font-size: 18px;
+}
+#art {
+  display: block;
+}
+#this {
+  border-radius: 5px;
+}
+li {
+  font-size: 14px;
+  font-weight: 200;
+}
+.modal-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+th {
+  font-size: 24px;
+  color: #aa7571;
+  border-bottom: 1px solid black;
+}
+
+
 
 @media only screen and (max-width: 869px) {
     .catch img {
@@ -268,5 +350,23 @@ a:hover {
     }
     h2 {
         font-size: 20px;
+    }
+    p {
+      font-size: 14px;
+    }
+    #word {
+      width: 30px;
+    }
+    #sub{
+      font-size: 12px;
+    }
+    h6 a:hover {
+      color: lightblue;
+      font-size: 12px;
+      text-decoration: none;
+    }
+    .answer::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: grey;
+      font-size: 12px;
     }
 }

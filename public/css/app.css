@@ -75,9 +75,14 @@ h1 {
   background-color: white;
   border-top:5px solid #D56200;
   border-bottom:5px solid #D56200;
+  overflow: hidden;
   color: grey;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: 100;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 a {

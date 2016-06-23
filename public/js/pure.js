@@ -1,18 +1,18 @@
 function ajaxPic(insert, i){
-  var num = i;
   var cx = "014538893091199514000:zjljuakjzby";
   var key = "AIzaSyA4uoEK2XXccLYRtf4_wzBvjV_tRpQUqos";
   var key2 = "AIzaSyC-UUVgd4D825FLYRnECtTJ45ntm5PMGhg";
-  $.getJSON({
+  return $.ajax({
     method: "GET",
     dataType: 'jsonp',
     url: `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&q=${insert}&searchType=image`,
     success: function(result){
       var arr = result.items;
-      var arr = result.hits;
-        $(`.${insert}`).append(`<img class="stuff" id="${arr[i].id}" src="${arr[i].link}"/><input type="button" id="change${i}" class="btn" value="next">`);
+      console.log(arr);
+        $(`.${insert}`).append(`<img class="stuff" id="${i}" src="${arr[i].link}"/><input type="button" id="change${i}" class="btn btn1" value="next">`);
         $(`#change${i}`).click(function(){
-          $(`#${arr[i].id}`).remove();
+          $(`#${i}`).remove();
+          $(`#change${i}`).remove();
           i++;
           ajaxPic(insert, i);
         })
@@ -20,7 +20,7 @@ function ajaxPic(insert, i){
   })
 }
 
-
+//just switch from ajaxBay to ajaxWord to switch between Google and Pixbay
 function ajaxWord(word, i){
   var pos = '';
   $.ajax({
@@ -29,7 +29,7 @@ function ajaxWord(word, i){
     success: function(result){
       var json = xmlToJson(result);
       pos = json.entry_list.entry[0].fl["#text"];
-        if(word.toLowerCase() === "a"){
+        if(word.toLowerCase() === "a" || pos === undefined || word === "insult"){
           $(`.${word}`).addClass('text');
           $(`.${word}`).append(`<h2>${word}</h2>`);
         }
@@ -50,7 +50,25 @@ function ajaxBay(insert, i){
     url: `https://pixabay.com/api/?key=2698784-511c7f267c2eae102b4399f86&q=${insert}&image_type=photo`,
     success: function(result){
       var arr = result.hits;
-        $(`.${insert}`).append(`<img class="stuff" id="${arr[i].id}" src="${arr[i].webformatURL}"/><input type="button" id="change${i}" class="btn" value="next">`);
+        $(`.${insert}`).append(`<img class="stuff" id="${arr[i].id}" src="${arr[i].webformatURL}"/><input type="button" id="change${i}" class="btn btn1" value="next">`);
+        $(`#change${i}`).click(function(){
+          $(`#${arr[i].id}`).remove();
+          $(`#change${i}`).remove();
+          i++;
+          ajaxBay(insert, i);
+        })
+    }
+  })
+}
+function ajaxBay2(insert, i){
+  $('#pos_catch').append(`<div class="${insert}"></div>`)
+  $.getJSON({
+    method: "GET",
+    dataType: 'jsonp',
+    url: `https://pixabay.com/api/?key=2698784-511c7f267c2eae102b4399f86&q=${insert}&image_type=photo`,
+    success: function(result){
+      var arr = result.hits;
+        $(`.${insert}`).append(`<img class="stuff" id="${arr[i].id}" src="${arr[i].webformatURL}"/><input type="button" id="change${i}" class="btn btn1" value="next">`);
         $(`#change${i}`).click(function(){
           $(`#${arr[i].id}`).remove();
           $(`#change${i}`).remove();
@@ -120,7 +138,29 @@ function translate(text, lan){
     method: "POST",
     url: `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${key}&text=${text}&lang=${lang}&[format=plain]]`,
     success: function(result){
+      console.log(result);
       alert(result.text[0]);
     }
   })
+}
+
+function def(word){
+  $.ajax({
+    method: "GET",
+    url: `http://www.dictionaryapi.com/api/v1/references/collegiate/xml/${word}?key=71b822f1-e0af-4112-affc-f192553b9e76`,
+    success: function(result){
+      var json = xmlToJson(result);
+      def = json.entry_list.entry[0].def.dt[0]["#text"];
+      if(typeof def === "object"){
+        alert(def[0] + " (remember you only get one hint)");
+      } else {
+        alert(def + " (remember you only get one hint)");
+      }
+    }
+  })
+}
+
+function reveal(word){
+  $("#pos_catch").empty();
+  $("#pos_catch").append(`<h2>${word}</h2>`)
 }
