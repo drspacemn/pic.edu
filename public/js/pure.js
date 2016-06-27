@@ -163,14 +163,18 @@ function xmlToJson(xml) {
 function translate(text, lan){
   var key = "trnsl.1.1.20160622T163325Z.6c9491f7b8d1b87e.69a2ab2510d377b52582d29fd03982abfb329393";
   var lang = `en-${lan}`;
+  console.log(text);
+  console.log(lang);
   $.ajax({
     method: "POST",
     url: `https://translate.yandex.net/api/v1.5/tr.json/translate?key=${key}&text=${text}&lang=${lang}&[format=plain]]`,
     success: function(result){
+      console.log(result);
       alert(result.text[0]);
     }
   })
 }
+
 function translate2(text, lan1, lan2){
   var key = "trnsl.1.1.20160622T163325Z.6c9491f7b8d1b87e.69a2ab2510d377b52582d29fd03982abfb329393";
   var lang = `${lan1}-${lan2}`;

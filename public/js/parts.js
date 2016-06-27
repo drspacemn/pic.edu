@@ -7,6 +7,9 @@ $(document).ready(function(){
   var i = 0;
   ajaxPic2(word, i);
   arr.push(word);
+  $('#doit').click(function(){
+    translate($('#word').val(), $('#lang').val())
+  })
 
   $("#hint1").click(function(){
     var word = word;
