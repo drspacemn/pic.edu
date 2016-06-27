@@ -96,8 +96,29 @@ function ajaxBay2(insert, i){
     }
   })
 }
+function ajaxPic2(insert, i){
+  $('#pos_catch').empty();
+  $('#pos_catch').append(`<div class="${insert}"></div>`)
+  var cx = "014538893091199514000:zjljuakjzby";
+  var key = "AIzaSyA4uoEK2XXccLYRtf4_wzBvjV_tRpQUqos";
+  var key2 = "AIzaSyC-UUVgd4D825FLYRnECtTJ45ntm5PMGhg";
+  return $.ajax({
+    method: "GET",
+    dataType: 'jsonp',
+    url: `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&q=${insert}&searchType=image`,
+    success: function(result){
+      var arr = result.items;
 
-
+        $(`.${insert}`).append(`<img class="stuff" id="${i}" src="${arr[i].link}"/><input type="button" id="change${i}" class="btn btn1" value="next">`);
+        $(`#change${i}`).click(function(){
+          $(`#${i}`).remove();
+          $(`#change${i}`).remove();
+          i++;
+          ajaxPic(insert, i);
+        })
+    }
+  })
+}
 
 function xmlToJson(xml) {
 

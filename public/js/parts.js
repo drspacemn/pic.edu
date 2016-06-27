@@ -5,7 +5,7 @@ $(document).ready(function(){
   var arr = [];
   var word = noun[Math.floor(Math.random()* noun.length)];
   var i = 0;
-  ajaxBay2(word, i);
+  ajaxPic2(word, i);
   arr.push(word);
 
   $("#hint1").click(function(){
@@ -31,7 +31,7 @@ $(document).ready(function(){
         word = noun[Math.floor(Math.random()* noun.length)];
       }
     })
-    ajaxBay2(word, i)
+    ajaxPic2(word, i)
     arr.push(word);
     $("#hint1").click(function(){
       console.log(word);
