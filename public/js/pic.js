@@ -2,10 +2,12 @@ $(document).ready(function(){
   $(".cont1").animate({
     left: '50%',
     })
+
     var num = 0;
     var ans1 = prime(num).split("$");
     var ans = ans1[0];
     var mean = ans1[1];
+    console.log(ans1);
     $('#sub').click(function(){
       var val = $('#anz1').val();
       console.log(val);

@@ -155,7 +155,7 @@ table {
   position: relative;
 }
 
-.item  {
+.itemz  {
   text-align: center;
   white-space: nowrap;
   margin: 10px;
@@ -166,7 +166,7 @@ table {
   margin-bottom: 5px;
 }
 .container {
-  margin-left: -20px;
+  margin-left: -40px;
 }
 
 .catch {
@@ -188,6 +188,7 @@ table {
 .container2 {
   display: flex;
   flex-direction: column;
+  margin-left: -100px;
 }
 .fitem {
   flex: 1;
@@ -206,6 +207,14 @@ table {
 #viz {
   font-size: 18px;
 }
+.itam {
+  flex: 1;
+}
+.idk {
+  margin-right: 70px;
+  height: 400px;
+  width: 20vw;
+}
 
 .result {
   height: 50%;
@@ -213,6 +222,9 @@ table {
   text-align: center;
   color: black;
   padding-top: 40px;
+}
+.yikes {
+  background: linear-gradient(#EE9A69, #C64F2B);
 }
 
 .text {
@@ -392,6 +404,25 @@ span {
   color: red;
   font-size: 14px;
   margin-left: 10px
+}
+.item {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.mycar {
+  width: 100%;
+  height: 300px;
+  overflow-x: scroll;
+}
+
+.stuff2 {
+  height: 70px;
+  display: inline-block;
+}
+
+.catches {
+  margin-bottom: 10px;
 }
 
 @media only screen and (max-width: 869px) {

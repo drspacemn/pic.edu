@@ -8,7 +8,7 @@ function ajaxPic(insert, i){
     url: `https://www.googleapis.com/customsearch/v1?key=${key}&cx=${cx}&q=${insert}&searchType=image`,
     success: function(result){
       var arr = result.items;
-      console.log(arr);
+
         $(`.${insert}`).append(`<img class="stuff" id="${i}" src="${arr[i].link}"/><input type="button" id="change${i}" class="btn btn1" value="next">`);
         $(`#change${i}`).click(function(){
           $(`#${i}`).remove();
@@ -19,6 +19,7 @@ function ajaxPic(insert, i){
     }
   })
 }
+
 
 //just switch from ajaxBay to ajaxWord to switch between Google and Pixbay
 function ajaxWord(word, i){
@@ -41,6 +42,21 @@ function ajaxWord(word, i){
       }
     }
   })
+}
+
+
+function prime(num){
+  var ans = '';
+  for(var key in data[num]){
+    ans = key + "$";
+    ans += data[num][key];
+    var arr = key.split(' ');
+    $(arr).each(function(i, val){
+      $('.catch').append(`<div class="item ${val}"></div>`);
+      ajaxWord(val, i);
+    })
+  }
+  return ans;
 }
 
 function ajaxBay(insert, i){
@@ -81,6 +97,8 @@ function ajaxBay2(insert, i){
   })
 }
 
+
+
 function xmlToJson(xml) {
 
 	// Create the return object
@@ -119,19 +137,7 @@ function xmlToJson(xml) {
 	return obj;
 };
 
-function prime(num){
-  var ans = '';
-  for(var key in data[num]){
-    ans = key + "$";
-    ans += data[num][key];
-    var arr = key.split(' ');
-    $(arr).each(function(i, val){
-      $('.catch').append(`<div class="item ${val}"></div>`);
-      ajaxWord(val, i)
-    })
-  }
-  return ans;
-}
+
 
 function translate(text, lan){
   var key = "trnsl.1.1.20160622T163325Z.6c9491f7b8d1b87e.69a2ab2510d377b52582d29fd03982abfb329393";
@@ -155,6 +161,8 @@ function translate2(text, lan1, lan2){
     }
   })
 }
+
+
 
 function def(word){
   $.ajax({
@@ -209,7 +217,8 @@ function pos(word){
   })
 }
 
-function ajaxWord69(word){
+
+function ajaxWord6(word){
   $.ajax({
     method: "GET",
     url: `http://www.dictionaryapi.com/api/v1/references/collegiate/xml/${word}?key=71b822f1-e0af-4112-affc-f192553b9e76`,
@@ -221,14 +230,18 @@ function ajaxWord69(word){
   })
 }
 
-function ajaxBay69(word){
+function ajaxBay6(word){
   $.getJSON({
     method: "GET",
     dataType: 'jsonp',
     url: `https://pixabay.com/api/?key=2698784-511c7f267c2eae102b4399f86&q=${word}&image_type=photo`,
     success: function(result){
       var arr = result.hits;
-        console.log(arr);
+        $(arr).each(function(i, val){
+          if (i < arr.length){
+            $(".mycar").append(`<div><img class="stuff2" src="${val.webformatURL}"></div>`);
+          }
+        })
     }
   })
 }

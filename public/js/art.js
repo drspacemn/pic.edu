@@ -25,7 +25,7 @@ $(document).ready(function(){
     var lan1 = $("#lan10").val();
     var lan2 = $("#lan20").val();
     translate2(text, lan1, lan2);
-    ajaxWord69(text);
-    ajaxBay69(text);
+    ajaxWord6(text);
+    ajaxBay6(text);
   })
 })

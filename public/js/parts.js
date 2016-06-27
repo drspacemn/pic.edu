@@ -7,7 +7,6 @@ $(document).ready(function(){
   var i = 0;
   ajaxBay2(word, i);
   arr.push(word);
-  console.log(word);
 
   $("#hint1").click(function(){
     var word = word;
